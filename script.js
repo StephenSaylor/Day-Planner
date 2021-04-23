@@ -10,25 +10,31 @@ var times = [
 	$("17"),
 ]
 var saveBtn = $("saveBtn")
-var currentHour = moment().format("H")
+var today = moment().format("MMMM DD YYYY")
+
+$("currentDay").append(today)
+
+addColorTheme()
 
 function addColorTheme() {
+	var currentHour = moment().format("H")
 	for (i = 0; i < times.length; i++) {
-	if (times[1] < hour) {
+	if (times[i] < currentHour) {
 		times[i].addClass("past")
 	} else 
-		if (times[i] == hour) {
+		if (times[i] == currentHour) {
 			times[i].addClass("present")
 		} else { 
 			times[i].addClass("future")
 		}
 	}
 }
-addColorTheme()
 
-saveBtn.on("click", function () {
-    var time = $(this).parent().attr("id");
-    var schedule = $(this).siblings(".schedule").val();
 
-    localStorage.setItem(time, schedule);
+saveBtn.on("click", function() {
+    var hourOfDay = $(this).parent().attr("id");
+    var textAreaContent = $("textarea").val().trim();
+
+    localStorage.setItem(hourOfDay, textAreaContent);
+    console.log(hourOfDay, textAreaContent);
 });
