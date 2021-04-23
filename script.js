@@ -28,12 +28,9 @@ function addColorTheme() {
 }
 addColorTheme()
 
-saveBtn.on("click", function(event) {
-    event.preventDefault()
-	var hourOfDay = moment().format("H")
-	var textAreaContent = times.value.trim()
+saveBtn.on("click", function() {
+	var timeOfDay = $(this).parent().attr("id");
+	var textarea = $(this).siblings(".textarea").val();
 
-    localStorage.setItem("hourOfDay", JSON.stringify(times));
+    localStorage.setItem(timeOfDay, textarea);
 });
-
-addColorTheme();
