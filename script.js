@@ -1,25 +1,23 @@
 var times = [
-	$("9"),
-	$("10"),
-	$("11"),
-	$("12"),
-	$("13"),
-	$("14"),
-	$("15"),
-	$("16"),
-	$("17"),
+	$("#9"),
+	$("#10"),
+	$("#11"),
+	$("#12"),
+	$("#13"),
+	$("#14"),
+	$("#15"),
+	$("#16"),
+	$("#17"),
 ]
-var saveBtn = $("saveBtn")
+var saveBtn = $("#saveBtn")
 var today = moment().format("MMMM DD YYYY")
 
-$("currentDay").append(today)
-
-addColorTheme()
+$("#currentDay").append(today)
 
 function addColorTheme() {
 	var currentHour = moment().format("H")
 	for (i = 0; i < times.length; i++) {
-	if (times[i] < currentHour) {
+	if (times[i] > currentHour) {
 		times[i].addClass("past")
 	} else 
 		if (times[i] == currentHour) {
@@ -29,7 +27,7 @@ function addColorTheme() {
 		}
 	}
 }
-
+addColorTheme()
 
 saveBtn.on("click", function() {
     var hourOfDay = $(this).parent().attr("id");
