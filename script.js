@@ -10,9 +10,8 @@ var times = [
 	$("#17"),
 ]
 var saveBtn = $("#saveBtn")
-var today = moment().format("MMMM DD YYYY")
-
-$("#currentDay").append(today)
+var today = moment();
+$("#currentDay").text(today.format("MMMM Do, YYYY"));
 
 function addColorTheme() {
 	var currentHour = moment().format("H")
@@ -29,10 +28,11 @@ function addColorTheme() {
 }
 addColorTheme()
 
-saveBtn.on("click", function() {
-    var hourOfDay = $(this).parent().attr("id");
-    var textAreaContent = $("textarea").val().trim();
+saveBtn.on("click", function(event) {
+    event.preventDefault()
+	var hourOfDay = moment().format("H")
+	var textAreaContent = times.value.trim()
 
-    localStorage.setItem(hourOfDay, textAreaContent);
-    console.log(hourOfDay, textAreaContent);
+    localStorage.setItem("hourOfDay", JSON.stringify(textAreaContent));
 });
+
